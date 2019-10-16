@@ -343,7 +343,7 @@ var slotOptions = [
 	{
 		text: "3XBAR",
 		value: 0,
-		selected: false,
+		selected: true,
 		description: "3XBAR",
 		imageSrc: "/assets/img/3xBAR.png"
 	},
@@ -384,7 +384,7 @@ $('#slotOption1').ddslick({
     imagePosition:"right",
     onSelected: function(selectedData){
         console.log("Selected data for lot option 1>>>", selectedData);
-        debugSlotOptions.slot1 = selectedData;
+        debugSlotOptions.slot1 = selectedData.selectedData.value;
     }   
 });
 $('#slotOption2').ddslick({
@@ -394,7 +394,7 @@ $('#slotOption2').ddslick({
     imagePosition:"right",
     onSelected: function(selectedData){
 		console.log("Selected data for lot option 2>>>",selectedData);
-        debugSlotOptions.slot2 = selectedData;
+        debugSlotOptions.slot2 = selectedData.selectedData.value;
     }   
 });
 $('#slotOption3').ddslick({
@@ -404,7 +404,7 @@ $('#slotOption3').ddslick({
     imagePosition:"right",
     onSelected: function(selectedData){
         console.log("Selected data for lot option 3>>>",selectedData);
-        debugSlotOptions.slot3 = selectedData;
+        debugSlotOptions.slot3 = selectedData.selectedData.value;
     }   
 });
  
