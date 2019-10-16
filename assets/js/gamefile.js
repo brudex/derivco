@@ -39,11 +39,20 @@ const mCasino3 = new SlotMachine(casino3, {
 		}
  
 	}else{
-		mCasino1.randomize = null;
-		mCasino2.randomize = null;
-		mCasino3.randomize = null; 
+		mCasino1.randomize = getRandomSlot;
+		mCasino2.randomize = getRandomSlot;
+		mCasino3.randomize = getRandomSlot; 
 	}
   
+}
+
+function getRandomSlot(){
+	return getRandomInt(0,9);
+}
+
+
+function getRandomInt(min, max) {	 
+	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 
@@ -289,27 +298,22 @@ const mCasino3 = new SlotMachine(casino3, {
 		showNotification("You have won $"+totalWin + " = ", msg);
 		showNotification("", "Price has been added to your balance");
 		arr.forEach( x=> addToBalance(x));
-	} 
-	
+	}  
  }
 
 
 
  function blinkWinningRows(cssClass){
-	 console.log('Blinking css class for row >>',cssClass);
-	 if(cssClass!==""){
-		 var el =  document.getElementsByClassName(cssClass)[0].getElementsByClassName("winPrice");
-		 console.log("the elements are >>",el);
-		 if(el.length){
-			 el[0].classList.add('blinkWin');
-			 console.log('Blink class added');
-			 let text = el[0].innerText;
-			 console.log('Dollar value ',text);
-			 let amt = text.replace("$","");
-			 winningPrices.push(parseInt(amt));
-		 }  
-	 } 
- }
+	if(cssClass!==""){
+	   var el =  document.getElementsByClassName(cssClass)[0].getElementsByClassName("winPrice");
+		if(el.length){
+		   el[0].classList.add('blinkWin');
+			let text = el[0].innerText;
+		   let amt = text.replace("$","");
+		   winningPrices.push(parseInt(amt));
+	   }  
+   } 
+}
 
  function markWinningLines(slotLine, winClass){
  	if(winClass!==""){
@@ -317,6 +321,8 @@ const mCasino3 = new SlotMachine(casino3, {
 		el.classList.add('winLine');  
 	} 
 }
+
+
 
 $('#toggleDebug').change(function() {
 	let isChecked = $(this).prop('checked');
